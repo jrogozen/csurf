@@ -75,6 +75,9 @@ function csurf (options) {
     var secret = getSecret(req, sessionKey, cookie)
     var token
 
+    // expose secret
+    req.csrfSecret = secret;
+
     // lazy-load token getter
     req.csrfToken = function csrfToken () {
       var sec = !cookie
